@@ -1,23 +1,16 @@
 {
-  "name": "tetrominos",
+  "name": "tetrominos-ucp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/macho9991/tetrominos-ucp.git"
+    "test": "vitest run",
+    "check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/macho9991/tetrominos-ucp/issues"
-  },
-  "homepage": "https://github.com/macho9991/tetrominos-ucp#readme",
   "devDependencies": {
     "typescript": "^5.9.3",
     "vitest": "^4.1.11"
