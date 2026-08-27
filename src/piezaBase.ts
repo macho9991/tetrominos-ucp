@@ -25,6 +25,38 @@ export abstract class PiezaBase {
     this.celdas = celdas;
   }
 
+    /**
+   * Convierte una matriz de 0 y 1 en la lista de celdas ocupadas.
+   *
+   * Acepta matrices con relleno (ceros alrededor) y normaliza el
+   * resultado: la pieza siempre queda pegada a la esquina (0,0).
+   *
+   * "static" significa que pertenece a la clase, no a las instancias:
+   * se llama con PiezaBase.desdeMatriz(...), sin necesidad de un objeto.
+   * Hace falta asi porque se usa DENTRO del super(), antes de que
+   * el objeto exista.
+   */
+  protected static desdeMatriz(matriz: number[][]): Celda[] {
+    const enBruto: Celda[] = [];
+
+    // forEach entrega el elemento y su indice.
+    // En la matriz exterior el indice es la fila, en la interior la columna.
+    matriz.forEach((fila, f) => {
+      fila.forEach((valor, c) => {
+        if (valor === 1) {
+          enBruto.push(new Celda(f, c));
+        }
+      });
+    });
+
+    // Se busca la fila y columna mas chicas que ocupa la pieza
+    const minFila = Math.min(...enBruto.map(c => c.fila));
+    const minColumna = Math.min(...enBruto.map(c => c.columna));
+
+    // Se resta ese minimo para correr la pieza a la esquina
+    return enBruto.map(c => new Celda(c.fila - minFila, c.columna - minColumna));
+  }//ultimo agregado
+
   /** Getter: expone el nombre sin permitir que lo modifiquen desde afuera. */
   getNombre(): string {
     return this.nombre;
@@ -116,7 +148,7 @@ export abstract class PiezaBase {
  * No es parte de la logica del juego: sirve para inspeccionar
  * visualmente que la rotacion este funcionando bien.
  */
-dibujar(): string {
+dibujar(): string { //implemento para ver el dibujo
 
   // Array donde se va guardando cada linea del dibujo.
   // "string[]" es el tipo: un array de textos.
