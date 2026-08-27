@@ -13,7 +13,7 @@ import { PiezaBase } from "./piezaBase";
  */
 export class PiezaL extends PiezaBase {
   constructor() {
-    super("L", [
+    super("L", [ //implemento por tuplas
       new Celda(0, 0),
       new Celda(1, 0),
       new Celda(2, 0),

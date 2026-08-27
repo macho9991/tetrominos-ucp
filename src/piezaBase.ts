@@ -103,4 +103,57 @@ export abstract class PiezaBase {
     const ancho = this.ancho();
     this.celdas = this.celdas.map(c => new Celda(ancho - 1 - c.columna, c.fila));
   }
+
+  //analisis de prueba de giro para ver por consola
+  /**
+ * Dibuja la pieza como texto, para poder verla en la consola.
+ * Devuelve algo como:
+ *
+ *   X .
+ *   X .
+ *   X X
+ *
+ * No es parte de la logica del juego: sirve para inspeccionar
+ * visualmente que la rotacion este funcionando bien.
+ */
+dibujar(): string {
+
+  // Array donde se va guardando cada linea del dibujo.
+  // "string[]" es el tipo: un array de textos.
+  const filas: string[] = [];
+
+  // Recorre las filas de la pieza, de arriba hacia abajo.
+  //   let f = 0        arranca en la fila 0
+  //   f < this.alto()  sigue mientras no llegue al alto de la pieza
+  //   f++              suma uno en cada vuelta
+  for (let f = 0; f < this.alto(); f++) {
+
+    // Se arma una linea vacia y se le van pegando caracteres.
+    // Va con "let" y no "const" porque cambia en cada vuelta del for interno.
+    let linea = "";
+
+    // Recorre las columnas de esa fila, de izquierda a derecha.
+    for (let c = 0; c < this.ancho(); c++) {
+
+      // Pregunta: entre las celdas de la pieza, hay alguna en esta posicion?
+      // .some(...) devuelve true si AL MENOS UNA cumple la condicion.
+      const ocupada = this.celdas.some(
+        celda => celda.fila === f && celda.columna === c
+      );
+
+      // Operador ternario: condicion ? valorSiTrue : valorSiFalse
+      // Si esta ocupada agrega "X ", si no agrega ". "
+      // El "+=" pega el texto al final de lo que ya habia.
+      linea += ocupada ? "X " : ". ";
+    }
+
+    // Termino la fila: se guarda en el array.
+    filas.push(linea);
+  }
+
+  // .join("\n") une todas las lineas separandolas con un salto de linea.
+  // ["X . ", "X . ", "X X "] se convierte en "X . \nX . \nX X "
+  return filas.join("\n");
+}
+
 }
