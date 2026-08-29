@@ -19,6 +19,33 @@ export abstract class Piezabase {
         this.celdas = celdas;
     }
 
+    // ==========================================
+    // MÉTODOS DE CONSTRUCCIÓN
+    // ==========================================
+
+    /**
+     * Convierte una matriz de 0 y 1 en la lista de celdas ocupadas.
+     * "static" significa que pertenece a la clase, no a las instancias.
+     */
+    protected static desdeMatriz(matriz: number[][]): Celdas[] {
+        const enBruto: Celdas[] = [];
+
+        // Buscamos los 1s usando corto circuito
+        matriz.forEach((fila, f) => {
+            fila.forEach((valor, c) => {
+                valor === 1 && enBruto.push(new Celdas(f, c));
+            });
+        });
+
+        if (enBruto.length === 0) return [];
+
+        // Buscamos la fila y columna mínimas para pegarla a la esquina (0,0)
+        const minFila = Math.min(...enBruto.map(c => c.fila));
+        const minColumna = Math.min(...enBruto.map(c => c.columna));
+
+        return enBruto.map(c => new Celdas(c.fila - minFila, c.columna - minColumna));
+    }
+
     //(encapsulamiento)
     // Expone el nombre de forma segura (solo lectura) 
 
@@ -81,5 +108,18 @@ export abstract class Piezabase {
         // Retorna true SOLO SI tienen el mismo tamaño Y todas coinciden.
         return mismoTamano && todasCoinciden;
     }
+
+    /** Gira la pieza 90 grados a la derecha. */
+    rotarDerecha(): void {
+        const alto = this.alto(); // Se guarda ANTES de rotar
+        this.celdas = this.celdas.map(c => new Celdas(c.columna, alto - 1 - c.fila));
+    }
+
+    /** Gira 90 grados a la izquierda. */
+    rotarIzquierda(): void {
+        const ancho = this.ancho(); // Se guarda ANTES de rotar
+        this.celdas = this.celdas.map(c => new Celdas(ancho - 1 - c.columna, c.fila));
+    }
+
 }
 
