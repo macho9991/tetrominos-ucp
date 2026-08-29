@@ -69,14 +69,17 @@ export abstract class Piezabase {
      */
 
     tieneForma(esperadas: Celdas[]): boolean {
+        // Guardamos las comprobaciones booleanas en constantes para mayor legibilidad
+        const mismoTamano = this.celdas.length === esperadas.length;
+
+        const todasCoinciden = esperadas.every(celdaEsperada =>
+            this.celdas.some(celdaActual =>
+                celdaActual.equals(celdaEsperada)
+            )
+        );
 
         // Retorna true SOLO SI tienen el mismo tamaño Y todas coinciden.
-        return (this.celdas.length === esperadas.length) &&
-            esperadas.every(celdaEsperada =>
-                this.celdas.some(celdaActual =>
-                    celdaActual.equals(celdaEsperada)
-                )
-            );
+        return mismoTamano && todasCoinciden;
     }
-
 }
+
