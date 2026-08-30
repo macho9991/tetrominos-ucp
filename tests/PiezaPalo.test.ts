@@ -1,0 +1,19 @@
+import {  test,expect } from "vitest";
+import {PiezaPalo} from "../src/PiezaPalo";
+test ("debe tener la matriz inicial con forma de palo", () =>    {
+const pieza = new PiezaPalo();  
+    const formaEsperada =[
+        [1],
+        [1],
+        [1],
+        [1]
+    ];
+      expect(pieza.matriz).toEqual(formaEsperada);
+})
+test("debe rotar 90 grados",()=>{
+    const pieza = new PiezaPalo();
+    pieza.rotar();
+    const formaEsperada = [[1,1,1,1]];
+    expect(pieza.matriz).toEqual(formaEsperada);
+
+})
