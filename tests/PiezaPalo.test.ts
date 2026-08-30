@@ -12,7 +12,7 @@ const pieza = new PiezaPalo();
 })
 test("debe rotar 90 grados",()=>{
     const pieza = new PiezaPalo();
-    pieza.rotar();
+    pieza.rotarderecha();
     const formaEsperada = [[1,1,1,1]];
     expect(pieza.matriz).toEqual(formaEsperada);
 

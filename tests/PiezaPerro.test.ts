@@ -11,7 +11,7 @@ test("debe tener la matriz inicial con forma de perro", ()  =>{
 });
 test("debe rotar 90 grados",()=>{
     const pieza = new PiezaPerro();
-    pieza.rotar();
+   pieza.rotarderecha();
     const formaEsperada =[
     [1, 0],
     [1, 1],
