@@ -14,7 +14,7 @@ export abstract class Piezabase {
      pasándole el nombre y su arreglo de celdas inicial.
      */
 
-    constructor(nombre: string, celdas: Celdas[]) {
+    constructor(nombre: string, celdas: Celdas[]) {//instancia de un objeto
         this.nombre = nombre;
         this.celdas = celdas;
     }
@@ -27,7 +27,7 @@ export abstract class Piezabase {
      * Convierte una matriz de 0 y 1 en la lista de celdas ocupadas.
      * "static" significa que pertenece a la clase, no a las instancias.
      */
-    protected static desdeMatriz(matriz: number[][]): Celdas[] {
+    protected static desdeMatriz(matriz: number[][]): Celdas[] {//funciones de esas clases
         const enBruto: Celdas[] = [];
 
         // Buscamos los 1s usando corto circuito
@@ -37,7 +37,7 @@ export abstract class Piezabase {
             });
         });
 
-        if (enBruto.length === 0) return [];
+        if (enBruto.length === 0) return [];//mirar
 
         // Buscamos la fila y columna mínimas para pegarla a la esquina (0,0)
         const minFila = Math.min(...enBruto.map(c => c.fila));
