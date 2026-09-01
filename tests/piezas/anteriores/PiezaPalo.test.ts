@@ -1,6 +1,6 @@
 import { test, expect } from "vitest";
 import { PiezaPalo } from "../../../src/piezas/anteriores/PiezaPalo";
-test("debe tener la matriz inicial con forma de palo", () => {
+test("debe tener la matriz inicial con forma de palo", () => { //Comprueba cómo nace la pieza cuando arranca el juego
     const pieza = new PiezaPalo();
     const formaEsperada = [
         [1],
