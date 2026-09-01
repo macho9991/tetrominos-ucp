@@ -4,9 +4,7 @@ import { test, expect } from "vitest";
 import { Reloj } from "../src/Reloj";
 
 
-// ---------------------------------------------------------
 // TEST 1: Crear el reloj
-// ---------------------------------------------------------
 
 test("debe poder crearse", () => {
 
@@ -18,10 +16,7 @@ test("debe poder crearse", () => {
 
 });
 
-
-// ---------------------------------------------------------
 // TEST 2: Ejecutar una acción con tick
-// ---------------------------------------------------------
 
 test("debe ejecutar la acción cuando hace tick", () => {
 

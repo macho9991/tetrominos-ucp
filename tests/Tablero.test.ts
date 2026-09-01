@@ -268,9 +268,7 @@ test("debe eliminar una línea completa", () => {
 });
 
 
-// ---------------------------------------------------------
 // TEST 11: Las celdas superiores bajan
-// ---------------------------------------------------------
 
 test("debe hacer bajar las celdas después de eliminar una línea", () => {
 

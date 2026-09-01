@@ -83,19 +83,4 @@ describe("Pruebas de Tetris", () => {
   });
 
 
-  // Comprueba la rotación aleatoria.
-  /* it("debería poder rotar la pieza aleatoriamente", () => {
-
-    // Creamos una partida.
-    const miJuego = new Tetris();
-
-    // Rotamos la pieza.
-    miJuego.rotarAleatoriamente();
-
-    // Una pieza Palo siempre debe seguir teniendo 4 celdas.
-    expect(miJuego.piezaActual.getCeldas().length).toBe(4);
-
-  });
-  */
-
 });
