@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1788274096857" clover="3.2.0">
-  <project timestamp="1788274096857" name="All files">
+<coverage generated="1788281360721" clover="3.2.0">
+  <project timestamp="1788281360722" name="All files">
     <metrics statements="97" coveredstatements="95" conditionals="20" coveredconditionals="18" methods="60" coveredmethods="58" elements="177" coveredelements="171" complexity="0" loc="97" ncloc="97" packages="3" files="14" classes="14"/>
     <package name="src">
       <metrics statements="58" coveredstatements="56" conditionals="16" coveredconditionals="14" methods="27" coveredmethods="26"/>
       <file name="Celdas.ts" path="C:\repositorios\tetris\tetrominos-ucp\src\Celdas.ts">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="4" count="387" type="stmt"/>
-        <line num="5" count="387" type="stmt"/>
+        <line num="4" count="383" type="stmt"/>
+        <line num="5" count="383" type="stmt"/>
         <line num="9" count="168" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="Reloj.ts" path="C:\repositorios\tetris\tetrominos-ucp\src\Reloj.ts">
@@ -63,7 +63,7 @@
         <line num="56" count="2" type="stmt"/>
         <line num="63" count="1" type="stmt"/>
         <line num="66" count="1" type="stmt"/>
-        <line num="67" count="2" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
         <line num="74" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="75" count="1" type="stmt"/>
         <line num="79" count="2" type="stmt"/>
@@ -92,16 +92,16 @@
         <line num="51" count="1" type="stmt"/>
         <line num="56" count="5" type="stmt"/>
         <line num="63" count="2" type="stmt"/>
-        <line num="68" count="35" type="stmt"/>
+        <line num="68" count="31" type="stmt"/>
         <line num="73" count="23" type="stmt"/>
         <line num="79" count="18" type="stmt"/>
         <line num="81" count="18" type="stmt"/>
         <line num="82" count="68" type="stmt"/>
         <line num="83" count="165" type="stmt"/>
         <line num="87" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="93" count="8" type="stmt"/>
-        <line num="95" count="8" type="stmt"/>
-        <line num="96" count="32" type="stmt"/>
+        <line num="93" count="7" type="stmt"/>
+        <line num="95" count="7" type="stmt"/>
+        <line num="96" count="28" type="stmt"/>
         <line num="106" count="5" type="stmt"/>
         <line num="108" count="5" type="stmt"/>
         <line num="109" count="20" type="stmt"/>
