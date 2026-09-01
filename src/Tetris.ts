@@ -1,35 +1,102 @@
-// Importamos nuestras dos clases compañeras
-import { Tablero } from './Tablero';
-import { Reloj } from './Reloj';
+// Importamos el tablero.
+import { Tablero } from "./Tablero";
+
+// Importamos el reloj.
+import { Reloj } from "./Reloj";
+
+// Importamos una pieza.
+import { PiezaPalo } from "./piezas/PiezaPalo";
 
 export class Tetris {
+
+    // Tablero donde se desarrolla el juego.
     tablero: Tablero;
+
+    // Reloj que controla los turnos.
     reloj: Reloj;
+
+    // Pieza que actualmente está cayendo.
+    piezaActual: PiezaPalo;
+
+    // Indica si el juego terminó.
     juegoTerminado: boolean;
 
+    // Cuenta los turnos realizados.
+    turnos: number;
+
     constructor() {
-        this.tablero = new Tablero(10, 20); // Creamos la cancha de 10x20
-        this.reloj = new Reloj(1000);       // Suponiendo que el reloj baja cada 1 segundo (1000ms)
-        this.juegoTerminado = false;        // Obviamente, empezamos vivos
+
+        // Creamos el tablero de 10 columnas y 20 filas.
+        this.tablero = new Tablero(10, 20);
+
+        // Creamos el reloj con un segundo de espera.
+        this.reloj = new Reloj(1000);
+
+        // Creamos la pieza inicial.
+        this.piezaActual = new PiezaPalo();
+
+        // El juego comienza activo.
+        this.juegoTerminado = false;
+
+        // Comenzamos con cero turnos.
+        this.turnos = 0;
     }
 
-    iniciar() {
-        // Le decimos al reloj: "Cada vez que hagas TIC, avanza un turno"
+    iniciar(): void {
+
+        // Le indicamos al reloj qué debe hacer.
         this.reloj.iniciar(() => {
             this.avanzarTurno();
         });
     }
 
-    avanzarTurno() {
-        // AQUÍ ESTÁ NUESTRO ÚNICO "IF" PERMITIDO EN TETRIS (El 2do en total)
-        // Si el juego ya terminó, cortamos la ejecución aquí mismo y no hacemos nada.
+    tick(): void {
+
+        // Permite hacer un tick manualmente.
+        this.reloj.tick();
+    }
+
+    // Gira la pieza una cantidad aleatoria de veces.
+    rotarAleatoriamente(): void {
+
+        // Elegimos un número entre 0 y 3.
+        const giros = Math.floor(Math.random() * 4);
+
+        // Realizamos los giros.
+        for (let i = 0; i < giros; i++) {
+            this.piezaActual.rotarDerecha();
+        }
+    }
+
+    avanzarTurno(): void {
+
+        // Si el juego terminó, no hacemos nada.
         if (this.juegoTerminado === true) {
-            return; 
+            return;
         }
 
-        // Si la computadora llega a esta línea, significa que seguimos vivos
-        console.log("El juego avanza: la pieza baja un casillero...");
-        
-        // (Aquí iría la lógica matemática para hacer que la pieza baje, sin usar más IFs)
+        // Sumamos un turno.
+        this.turnos++;
+
+        // Obtenemos las celdas actuales de la pieza.
+        const celdasActuales = this.piezaActual.getCeldas();
+
+        // Comprobamos si la pieza puede bajar.
+        const puedeBajar = this.tablero.puedeMoverAbajo(celdasActuales);
+
+        if (puedeBajar) {
+
+            // Calculamos las nuevas posiciones.
+            const nuevasCeldas =
+                this.tablero.moverAbajo(celdasActuales);
+
+            // Guardamos las nuevas posiciones.
+            this.piezaActual.actualizarCeldas(nuevasCeldas);
+
+        } else {
+
+            // Si no puede bajar, la colocamos en el tablero.
+            this.tablero.agregarPieza(celdasActuales);
+        }
     }
 }
