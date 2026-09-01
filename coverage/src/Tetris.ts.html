@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.23% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/20</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -151,20 +151,7 @@
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
 <a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a>
-<a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,39 +217,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Importamos el tablero.
@@ -336,44 +310,31 @@ export class Tetris {
     }
 &nbsp;
     avanzarTurno(): void {
+        // 1. Cortocircuito: Sumamos un turno SOLO si el juego NO ha terminado
+        !this.juegoTerminado &amp;&amp; this.turnos++;
 &nbsp;
-        // Si el juego terminó, no hacemos nada.
-        if (this.juegoTerminado === true) {
-            return;
-        }
-&nbsp;
-        // Sumamos un turno.
-        this.turnos++;
-&nbsp;
-        // Obtenemos las celdas actuales de la pieza.
+        // Obtenemos las celdas actuales de la pieza
         const celdasActuales = this.piezaActual.getCeldas();
 &nbsp;
-        // Comprobamos si la pieza puede bajar.
-        const puedeBajar = this.tablero.puedeMoverAbajo(celdasActuales);
+        // 2. Comprobamos si puede bajar, condicionándolo a que el juego siga activo
+        const puedeBajar = !this.juegoTerminado &amp;&amp; this.tablero.puedeMoverAbajo(celdasActuales);
 &nbsp;
-        if (puedeBajar) {
-&nbsp;
-            // Calculamos las nuevas posiciones.
-            const nuevasCeldas =
-                this.tablero.moverAbajo(celdasActuales);
-&nbsp;
-            // Guardamos las nuevas posiciones.
-            this.piezaActual.actualizarCeldas(nuevasCeldas);
-&nbsp;
-        } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-&nbsp;
-            // Si no puede bajar, la colocamos en el tablero.
-<span class="cstat-no" title="statement not covered" >            this.tablero.agregarPieza(celdasActuales);</span>
-        }
+        // 3. Cortocircuito + Ternario para reemplazar el if...else
+        !this.juegoTerminado &amp;&amp; (
+            puedeBajar
+                ? this.piezaActual.actualizarCeldas(this.tablero.moverAbajo(celdasActuales))
+                : <span class="branch-1 cbranch-no" title="branch not covered" >this.tablero.agregarPieza(celdasActuales)</span>
+        );
     }
-}</pre></td></tr></table></pre>
+&nbsp;
+    }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-01T14:48:16.760Z
+                at 2026-09-01T18:13:49.734Z
             </div>
         <script src="../prettify.js"></script>
         <script>
