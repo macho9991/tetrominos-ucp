@@ -1,4 +1,4 @@
-// Importamos el tablero.
+// Importamos el tablero del tetris.
 import { Tablero } from "./Tablero";
 
 // Importamos el reloj.
