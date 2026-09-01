@@ -24,10 +24,10 @@ test("debe rotar 90 grados", () => {
     pieza.rotarDerecha();
 
     const formaEsperada = [
-        new Celdas(0, 1),
+        new Celdas(0, 0),
         new Celdas(1, 0),
         new Celdas(1, 1),
-        new Celdas(2, 0)
+        new Celdas(2, 1)
     ];
 
     expect(pieza.tieneForma(formaEsperada)).toBe(true);
