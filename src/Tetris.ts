@@ -69,34 +69,21 @@ export class Tetris {
     }
 
     avanzarTurno(): void {
+        // 1. Cortocircuito: Sumamos un turno SOLO si el juego NO ha terminado
+        !this.juegoTerminado && this.turnos++;
 
-        // Si el juego terminó, no hacemos nada.
-        if (this.juegoTerminado === true) {
-            return;
-        }
-
-        // Sumamos un turno.
-        this.turnos++;
-
-        // Obtenemos las celdas actuales de la pieza.
+        // Obtenemos las celdas actuales de la pieza
         const celdasActuales = this.piezaActual.getCeldas();
 
-        // Comprobamos si la pieza puede bajar.
-        const puedeBajar = this.tablero.puedeMoverAbajo(celdasActuales);
+        // 2. Comprobamos si puede bajar, condicionándolo a que el juego siga activo
+        const puedeBajar = !this.juegoTerminado && this.tablero.puedeMoverAbajo(celdasActuales);
 
-        if (puedeBajar) {
-
-            // Calculamos las nuevas posiciones.
-            const nuevasCeldas =
-                this.tablero.moverAbajo(celdasActuales);
-
-            // Guardamos las nuevas posiciones.
-            this.piezaActual.actualizarCeldas(nuevasCeldas);
-
-        } else {
-
-            // Si no puede bajar, la colocamos en el tablero.
-            this.tablero.agregarPieza(celdasActuales);
-        }
+        // 3. Cortocircuito + Ternario para reemplazar el if...else
+        !this.juegoTerminado && (
+            puedeBajar
+                ? this.piezaActual.actualizarCeldas(this.tablero.moverAbajo(celdasActuales))
+                : this.tablero.agregarPieza(celdasActuales)
+        );
     }
-}
+
+    }

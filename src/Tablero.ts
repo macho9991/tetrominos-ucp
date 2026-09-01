@@ -30,9 +30,7 @@ export class Tablero {
             this.esPosicionValida(celda.fila, celda.columna)
         );
 
-        if (posicionValida) {
-            this.celdas = this.celdas.concat(celdas);
-        }
+        this.celdas = posicionValida ? this.celdas.concat(celdas): this.celdas;
     }
 
 
@@ -64,13 +62,9 @@ export class Tablero {
     // Si no puede bajar, la deja colocada en el tablero.
     moverPieza(celdas: Celdas[]): Celdas[] {
 
-        if (this.puedeMoverAbajo(celdas)) {
-            return this.moverAbajo(celdas);
-        }
-
-        this.agregarPieza(celdas);
-
-        return celdas;
+       const puedeBajar = this.puedeMoverAbajo(celdas);
+       !puedeBajar && this.agregarPieza(celdas);
+       return puedeBajar ? this.moverAbajo(celdas) : celdas;
     }
 
 
@@ -90,9 +84,7 @@ export class Tablero {
 
             // Si tiene tantas celdas como el ancho,
             // significa que la línea está completa.
-            if (cantidad === this.ancho) {
-                filasCompletas.push(fila);
-            }
+         (cantidad === this.ancho) && filasCompletas.push(fila);
         }
 
         // Eliminamos las celdas que pertenecen a las líneas completas.
