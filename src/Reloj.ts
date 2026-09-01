@@ -1,4 +1,5 @@
-export class Reloj {
+//Maneja el temporizador principal del juego para ejecutar acciones periódicas (caída de piezas).
+ export class Reloj {
 
     // Guarda el tiempo de espera del reloj.
     private tiempoDeEspera: number;
