@@ -1,13 +1,13 @@
 import { Piezabase } from "./PiezaBase";
 
-export class PiezaPerro extends Piezabase {
+export class PiezaCuadrado extends Piezabase {
 
     constructor() {
         super(
-            "Perro",
+            "Cuadrado",
             Piezabase.desdeMatriz([
-                [0, 1, 1],
-                [1, 1, 0]
+                [1, 1],
+                [1, 1]
             ])
         );
     }

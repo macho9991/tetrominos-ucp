@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { PiezaPalo } from "../src/piezas/anteriores/PiezaPalo";
+import { PiezaPalo } from "../../../src/piezas/anteriores/PiezaPalo";
 test("debe tener la matriz inicial con forma de palo", () => {
     const pieza = new PiezaPalo();
     const formaEsperada = [

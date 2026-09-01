@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { PiezaPerro } from "../src/piezas/anteriores/PiezaPerro";
+import { PiezaPerro } from "../../../src/piezas/anteriores/PiezaPerro";
 
 test("debe tener la matriz inicial con forma de perro", () => {
     const pieza = new PiezaPerro();

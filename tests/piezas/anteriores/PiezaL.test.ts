@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest"
-import { PiezaL } from "../src/piezas/anteriores/PiezaL";
+import { PiezaL } from "../../../src/piezas/anteriores/PiezaL";
 
 
 describe("Puebas de la pieza L", () => {
