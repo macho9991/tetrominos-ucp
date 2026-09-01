@@ -22,7 +22,7 @@ export abstract class Piezabase {
 
         const celdas: Celdas[] = [];
 
-        // Recorremos cada fila y columna de la matriz.
+        // Recorremos cada fila y columna de la matriz
         matriz.forEach((fila, f) => {
 
             fila.forEach((valor, c) => {
