@@ -1,7 +1,7 @@
 # tetrominos-ucp
 # Tetris
 
-Proyecto desarrollado en TypeScript como parte de la materia Paradigmas.
+Proyecto desarrollado en TypeScript.
 
 ## Descripción
 
