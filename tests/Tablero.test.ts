@@ -10,10 +10,7 @@ import { Celdas } from "../src/Celdas";
 // se pueda agregar al tablero.
 import { PiezaL } from "../src/piezas/PiezaL";
 
-
-// ---------------------------------------------------------
 // TEST 1: Crear un tablero
-// ---------------------------------------------------------
 
 test("debe crear un tablero de 10x20", () => {
 
@@ -29,9 +26,7 @@ test("debe crear un tablero de 10x20", () => {
 });
 
 
-// ---------------------------------------------------------
 // TEST 2: Posición válida
-// ---------------------------------------------------------
 
 test("debe aceptar una posición dentro del tablero", () => {
 
@@ -44,9 +39,7 @@ test("debe aceptar una posición dentro del tablero", () => {
 });
 
 
-// ---------------------------------------------------------
 // TEST 3: Posición fuera del tablero
-// ---------------------------------------------------------
 
 test("no debe aceptar una posición fuera del tablero", () => {
 
@@ -59,9 +52,7 @@ test("no debe aceptar una posición fuera del tablero", () => {
 });
 
 
-// ---------------------------------------------------------
 // TEST 4: Agregar una pieza completa
-// ---------------------------------------------------------
 
 test("debe poder agregar una pieza completa", () => {
 
@@ -89,10 +80,7 @@ test("debe poder agregar una pieza completa", () => {
 
 });
 
-
-// ---------------------------------------------------------
 // TEST 5: No agregar una pieza fuera del tablero
-// ---------------------------------------------------------
 
 test("no debe agregar una pieza que salga del tablero", () => {
 
@@ -117,10 +105,7 @@ test("no debe agregar una pieza que salga del tablero", () => {
 
 });
 
-
-// ---------------------------------------------------------
 // TEST 6: Agregar una pieza después de rotarla
-// ---------------------------------------------------------
 
 test("debe poder agregar una pieza después de rotarla", () => {
 
@@ -141,10 +126,7 @@ test("debe poder agregar una pieza después de rotarla", () => {
 
 });
 
-
-// ---------------------------------------------------------
 // TEST 7: Mover una pieza hacia abajo
-// ---------------------------------------------------------
 
 test("debe mover la pieza una fila hacia abajo", () => {
 
@@ -179,10 +161,7 @@ test("debe mover la pieza una fila hacia abajo", () => {
 
 });
 
-
-// ---------------------------------------------------------
 // TEST 8: No permitir bajar fuera del tablero
-// ---------------------------------------------------------
 
 test("no debe permitir bajar una pieza fuera del tablero", () => {
 
@@ -202,10 +181,7 @@ test("no debe permitir bajar una pieza fuera del tablero", () => {
 
 });
 
-
-// ---------------------------------------------------------
 // TEST 9: Dejar colocada la pieza cuando no puede bajar
-// ---------------------------------------------------------
 
 test("debe dejar la pieza colocada cuando no puede bajar", () => {
 
@@ -228,10 +204,7 @@ test("debe dejar la pieza colocada cuando no puede bajar", () => {
 
 });
 
-
-// ---------------------------------------------------------
 // TEST 10: Eliminar una línea completa
-// ---------------------------------------------------------
 
 test("debe eliminar una línea completa", () => {
 
