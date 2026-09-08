@@ -85,5 +85,5 @@ export class Tetris {
                 : this.tablero.agregarPieza(celdasActuales)
         );
     }
-
+    
     }

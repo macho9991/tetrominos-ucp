@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, test } from "vitest";
 
 // Importamos la clase Tetris.
 import { Tetris } from "../src/Tetris";
@@ -81,6 +81,5 @@ describe("Pruebas de Tetris", () => {
     expect(miJuego.piezaActual.tieneForma(formaEsperada)).toBe(true);
 
   });
-
-
+  
 });
