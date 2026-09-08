@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, test } from "vitest";
 
 // Importamos la clase Tetris.
 import { Tetris } from "../src/Tetris";
@@ -81,5 +81,20 @@ describe("Pruebas de Tetris", () => {
     expect(miJuego.piezaActual.tieneForma(formaEsperada)).toBe(true);
 
   });
+});
 
+test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game Over)", () => {
+    const tetris = new Tetris();
+
+    // 1. Verificamos que al inicio el juego está activo
+    expect(tetris.juegoTerminado).toBe(false);
+
+    // 2. Simulamos muchos turnos para que se apilen las piezas.
+    // Como el tablero es de 20 de alto y el palo de 4, con 120 turnos forzamos el rebalse.
+    for (let i = 0; i < 120; i++) {
+        tetris.avanzarTurno();
+    }
+
+    // 3. Al llenarse el tablero, la nueva pieza no tiene lugar válido, perdimos.
+    expect(tetris.juegoTerminado).toBe(true);
 });
