@@ -69,6 +69,7 @@ export class Tetris {
     }
     
     avanzarTurno(): void {
+
         // 1. Cortocircuito: Sumamos un turno SOLO si el juego NO ha terminado
         !this.juegoTerminado && this.turnos++;
 
@@ -82,8 +83,27 @@ export class Tetris {
         !this.juegoTerminado && (
             puedeBajar
                 ? this.piezaActual.actualizarCeldas(this.tablero.moverAbajo(celdasActuales))
-                : this.tablero.agregarPieza(celdasActuales)
+                : this.fijarPieza() // <--- ACÁ ESTÁ EL CAMBIO IMPORTANTE
         );
     }
-    
+// Se encarga de fijar la pieza, limpiar líneas, crear una nueva y chequear el Game Over
+    fijarPieza(): void {
+        
+        // 1. Guardamos la pieza que ya no puede bajar
+        this.tablero.agregarPieza(this.piezaActual.getCeldas());
+        
+        // 2. Limpiamos las lineas completas
+        this.tablero.eliminarLineasCompletas();
+        
+        // 3. Hacemos aparecer una pieza nueva
+        this.piezaActual = new PiezaPalo(); 
+        
+        // 4. LOGICA DE GAME OVER :
+        const posicionLibre = this.piezaActual.getCeldas().every(celda =>
+            this.tablero.esPosicionValida(celda.fila, celda.columna)
+        );
+
+        // Si la posición no esta libre
+        this.juegoTerminado = !posicionLibre;
+    }
     }

@@ -81,5 +81,26 @@ describe("Pruebas de Tetris", () => {
     expect(miJuego.piezaActual.tieneForma(formaEsperada)).toBe(true);
 
   });
+<<<<<<< HEAD
   
 });
+=======
+});
+
+test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game Over)", () => {
+    const tetris = new Tetris();
+
+    // 1. Verificamos que al inicio el juego está activo
+    expect(tetris.juegoTerminado).toBe(false);
+ 
+    // Forzamos al tablero a que siempre responda que NO hay lugar valido.
+    (tetris as any).tablero.esPosicionValida = () => false;
+
+    // 3. Al fijar la pieza, el juego intentara crear una nueva.
+    // El tablero hackeado le dirá que chocó, forzando el Game Over.
+    tetris.fijarPieza();
+
+    // 4. Comprobamos que el Tetris reaccionó correctamente
+    expect(tetris.juegoTerminado).toBe(true);
+});
+>>>>>>> 9f897d009811653b257661f2be497b75cf2c3940
