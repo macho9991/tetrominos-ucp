@@ -102,7 +102,7 @@ juegoGanado: boolean = false;
         // 3. Hacemos aparecer una pieza nueva
         this.piezaActual = new PiezaPalo(); 
         
-        // 4. LÓGICA DE VICTORIA (Sin IF)
+        // 4. LÓGICA DE VICTORIA 
         // Evaluamos matemáticamente si llegamos a la meta
         this.juegoGanado = this.lineasBorradas >= 40;
 
