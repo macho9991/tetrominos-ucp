@@ -81,11 +81,8 @@ describe("Pruebas de Tetris", () => {
     expect(miJuego.piezaActual.tieneForma(formaEsperada)).toBe(true);
 
   });
-<<<<<<< HEAD
-=======
   
 });
->>>>>>> aa7cf88b61e193d93e817ac12e2ef6c1cfafa140
 
 
 test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game Over)", () => {
@@ -104,9 +101,6 @@ test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game 
     // 4. Comprobamos que el Tetris reaccionó correctamente
     expect(tetris.juegoTerminado).toBe(true);
 });
-<<<<<<< HEAD
-});
-=======
 
 test("debe cambiar juegoGanado y juegoTerminado a true al borrar 40 líneas (Victoria)", () => {
     const tetris = new Tetris();
@@ -132,22 +126,17 @@ test("debe cambiar juegoGanado y juegoTerminado a true al borrar 40 líneas (Vic
 test("debe cambiar juegoGanado y juegoTerminado a true al borrar 40 líneas (Victoria)", () => {
     const tetris = new Tetris();
 
-    // 1. Al inicio, el juego no está ganado ni terminado
-    // (TypeScript se va a quejar acá porque juegoGanado todavía no existe)
+   
     expect((tetris as any).juegoGanado).toBe(false);
     expect(tetris.juegoTerminado).toBe(false);
 
-    // 2. Simulamos mágicamente que el jugador fue buenísimo y borró 40 líneas de golpe
+   
     (tetris as any).lineasBorradas = 40;
 
-    // 3. Forzamos la actualización del estado (lo enganchamos con fijarPieza)
-    // Para que el juego detecte la victoria en este turno
     (tetris as any).fijarPieza();
 
-    // 4. Comprobamos matemáticamente la victoria
     expect((tetris as any).juegoGanado).toBe(true);
     
     // Si ganamos, el juego lógicamente también tiene que estar terminado
     expect(tetris.juegoTerminado).toBe(true);
 });
->>>>>>> aa7cf88b61e193d93e817ac12e2ef6c1cfafa140
