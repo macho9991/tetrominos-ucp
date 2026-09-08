@@ -88,12 +88,11 @@ test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game 
 
     // 1. Verificamos que al inicio el juego está activo
     expect(tetris.juegoTerminado).toBe(false);
-
-    // 2. TRUCO TDD (Mocking): 
-    // Forzamos al tablero a que siempre responda que NO hay lugar válido.
+ 
+    // Forzamos al tablero a que siempre responda que NO hay lugar valido.
     (tetris as any).tablero.esPosicionValida = () => false;
 
-    // 3. Al fijar la pieza, el juego intentará crear una nueva.
+    // 3. Al fijar la pieza, el juego intentara crear una nueva.
     // El tablero hackeado le dirá que chocó, forzando el Game Over.
     tetris.fijarPieza();
 
