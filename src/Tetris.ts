@@ -86,24 +86,32 @@ export class Tetris {
                 : this.fijarPieza() // <--- ACÁ ESTÁ EL CAMBIO IMPORTANTE
         );
     }
-// Se encarga de fijar la pieza, limpiar líneas, crear una nueva y chequear el Game Over
+
+juegoGanado: boolean = false;
+    lineasBorradas: number = 0;
+
+   // Se encarga de fijar la pieza, limpiar líneas, crear una nueva y chequear el Game Over / Win
     fijarPieza(): void {
         
         // 1. Guardamos la pieza que ya no puede bajar
         this.tablero.agregarPieza(this.piezaActual.getCeldas());
         
-        // 2. Limpiamos las lineas completas
+        // 2. Limpiamos las líneas (pronto haremos que el tablero nos sume cuántas borró acá)
         this.tablero.eliminarLineasCompletas();
         
         // 3. Hacemos aparecer una pieza nueva
         this.piezaActual = new PiezaPalo(); 
         
-        // 4. LOGICA DE GAME OVER :
+        // 4. LÓGICA DE VICTORIA (Sin IF)
+        // Evaluamos matemáticamente si llegamos a la meta
+        this.juegoGanado = this.lineasBorradas >= 40;
+
+        // 5. LOGICA DE GAME OVER (Evaluación funcional):
         const posicionLibre = this.piezaActual.getCeldas().every(celda =>
             this.tablero.esPosicionValida(celda.fila, celda.columna)
         );
 
-        // Si la posición no esta libre
-        this.juegoTerminado = !posicionLibre;
+        // El juego se termina si NO hay posicion libre (perdimos) O si ya llegamos a las 40 líneas (ganamos).
+        this.juegoTerminado = !posicionLibre || this.juegoGanado;
     }
-    }
+}
