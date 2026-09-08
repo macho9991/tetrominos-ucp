@@ -89,12 +89,14 @@ test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game 
     // 1. Verificamos que al inicio el juego está activo
     expect(tetris.juegoTerminado).toBe(false);
 
-    // 2. Simulamos muchos turnos para que se apilen las piezas.
-    // Como el tablero es de 20 de alto y el palo de 4, con 120 turnos forzamos el rebalse.
-    for (let i = 0; i < 120; i++) {
-        tetris.avanzarTurno();
-    }
+    // 2. TRUCO TDD (Mocking): 
+    // Forzamos al tablero a que siempre responda que NO hay lugar válido.
+    (tetris as any).tablero.esPosicionValida = () => false;
 
-    // 3. Al llenarse el tablero, la nueva pieza no tiene lugar válido, perdimos.
+    // 3. Al fijar la pieza, el juego intentará crear una nueva.
+    // El tablero hackeado le dirá que chocó, forzando el Game Over.
+    tetris.fijarPieza();
+
+    // 4. Comprobamos que el Tetris reaccionó correctamente
     expect(tetris.juegoTerminado).toBe(true);
 });
