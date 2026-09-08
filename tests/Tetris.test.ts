@@ -103,4 +103,3 @@ test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game 
     // 4. Comprobamos que el Tetris reaccionó correctamente
     expect(tetris.juegoTerminado).toBe(true);
 });
->>>>>>> 9f897d009811653b257661f2be497b75cf2c3940
