@@ -67,7 +67,7 @@ export class Tetris {
             this.piezaActual.rotarDerecha();
         }
     }
-
+    
     avanzarTurno(): void {
 
         // 1. Cortocircuito: Sumamos un turno SOLO si el juego NO ha terminado
