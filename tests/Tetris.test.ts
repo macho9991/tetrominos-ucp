@@ -81,11 +81,7 @@ describe("Pruebas de Tetris", () => {
     expect(miJuego.piezaActual.tieneForma(formaEsperada)).toBe(true);
 
   });
-<<<<<<< HEAD
-  
-});
-=======
-});
+
 
 test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game Over)", () => {
     const tetris = new Tetris();
@@ -102,4 +98,5 @@ test("debe cambiar juegoTerminado a true cuando las piezas llegan al tope (Game 
 
     // 4. Comprobamos que el Tetris reaccionó correctamente
     expect(tetris.juegoTerminado).toBe(true);
+});
 });
