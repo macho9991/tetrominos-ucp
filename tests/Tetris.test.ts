@@ -49,6 +49,22 @@ function prepararBaseParaElCuadrado(juego: Tetris): void {
     juego.tablero.agregarPieza(celdas);
 }
 
+/**
+ * Llena la columna 0 desde la fila 4 hasta el fondo.
+ * Le quedan libres las cuatro de arriba, que son las que ocupa el palo.
+ */
+function prepararColumnaParaElPalo(juego: Tetris): void {
+
+    const celdas: Celdas[] = [];
+
+    for (let fila = 4; fila <= 19; fila++) {
+        celdas.push(new Celdas(fila, 0));
+    }
+
+    juego.tablero.agregarPieza(celdas);
+}
+
+
 
 describe("Pruebas de Tetris", () => {
 
