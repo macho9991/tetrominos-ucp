@@ -117,6 +117,28 @@ describe("Pruebas de Tetris", () => {
 
         expect(miJuego.piezaActual.getCeldas().length).toBe(4);
     });
+     // --- Jugar ---
+
+    it("debería bajar la pieza una fila por turno", () => {
+
+        const miJuego = new Tetris(() => new PiezaPalo());
+
+        miJuego.avanzarTurno();
+        miJuego.avanzarTurno();
+        miJuego.avanzarTurno();
+
+        // El palo arranca en las filas 0 a 3, así que ahora va de la 3 a la 6.
+        const formaEsperada = [
+            new Celdas(3, 0),
+            new Celdas(4, 0),
+            new Celdas(5, 0),
+            new Celdas(6, 0)
+        ];
+
+        expect(miJuego.piezaActual.tieneForma(formaEsperada)).toBe(true);
+        expect(miJuego.turnos).toBe(3);
+        expect(miJuego.juegoTerminado).toBe(false);
+    });
 
 
 
