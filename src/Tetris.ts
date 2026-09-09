@@ -36,42 +36,87 @@ export class Tetris {
     // Indica si el juego terminó.
     juegoTerminado: boolean;
 
+    //
+    juegoGanado: boolean;
+
+    //
+    lineasBorradas: number;
+
     // Cuenta los turnos realizados.
     turnos: number;
 
-    constructor() {
+    //
+    piezasColocadas: number;
 
-        // Creamos el tablero de 10 columnas y 20 filas.
-        this.tablero = new Tablero(10, 20);
+    /** De dónde salen las piezas. Los tests le pasan la que necesitan. */
+    private fabrica: FabricaDePieza;
 
-        // Creamos el reloj con un segundo de espera.
-        this.reloj = new Reloj(1000);
 
-        // Creamos la pieza inicial.
-        this.piezaActual = new PiezaPalo();
+   constructor(fabrica: FabricaDePieza = () => new PiezaPalo()) {
 
-        // El juego comienza activo.
+        //
+        this.fabrica = fabrica;
+
+        //
+        this.tablero = new Tablero(COLUMNAS, FILAS);
+        //
+        this.reloj = new Reloj(MS_POR_TURNO);
+        //
+        this.piezaActual = this.fabrica();
+        //
         this.juegoTerminado = false;
-
-        // Comenzamos con cero turnos.
+        //
+        this.juegoGanado = false;
+        //
+        this.lineasBorradas = 0;
+        //
         this.turnos = 0;
+        //
+        this.piezasColocadas = 0;
+
     }
 
     iniciar(): void {
-
-        // Le indicamos al reloj qué debe hacer.
-        this.reloj.iniciar(() => {
-            this.avanzarTurno();
-        });
+        this.reloj.iniciar(() => this.avanzarTurno());
     }
 
     tick(): void {
-
-        // Permite hacer un tick manualmente.
         this.reloj.tick();
     }
 
+    /**
+     * Compuerta del juego: el turno se juega sólo si la partida sigue activa.
+     * Si ya terminó, la llamada no hace nada.
+     */
+
+    avanzarTurno(): void {
+        !this.juegoTerminado && this.jugarTurno();
+    }
+
+    /**
+     * Un turno real: la pieza baja una fila.
+     * Si ya no puede bajar, queda fija y aparece la siguiente.
+     */
+    private jugarTurno(): void {
+
+        this.turnos++;
+
+        const celdas = this.piezaActual.getCeldas();
+
+        // O la pieza baja una fila, o queda fija en el tablero.
+        this.tablero.puedeMoverAbajo(celdas)
+            ? this.piezaActual.actualizarCeldas(this.tablero.moverAbajo(celdas))
+            : this.fijarPieza();
+    }
+    
+    
+    
+    
+    
+    
+    
     // Gira la pieza una cantidad aleatoria de veces.
+    /*
     rotarAleatoriamente(): void {
 
         // Elegimos un número entre 0 y 3.
@@ -130,3 +175,4 @@ juegoGanado: boolean = false;
         this.juegoTerminado = !posicionLibre || this.juegoGanado;
     }
 }
+*/
