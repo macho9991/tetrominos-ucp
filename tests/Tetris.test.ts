@@ -154,6 +154,21 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.lineasBorradas).toBe(2);
         expect(miJuego.piezasColocadas).toBe(1);
     });
+        // --- Contador de líneas: columna ---
+
+    it("debería contar la línea cuando el palo completa la columna", () => {
+
+        const miJuego = new Tetris(() => new PiezaPalo());
+
+        // Dejamos la columna 0 llena salvo las cuatro filas de arriba.
+        prepararColumnaParaElPalo(miJuego);
+
+        // El palo tapa ese hueco y completa las 20 celdas de la columna.
+        bajarHastaApoyar(miJuego);
+
+        expect(miJuego.lineasBorradas).toBe(1);
+        expect(miJuego.piezasColocadas).toBe(1);
+    });
 
 
 
