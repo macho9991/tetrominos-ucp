@@ -106,6 +106,19 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.piezaActual.getCeldas().length).toBe(4);
         expect(miJuego.piezaActual.tieneForma(formaInicial)).toBe(true);
     });
+      // --- Rotación ---
+
+    it("debería mantener las 4 celdas después de rotar al azar", () => {
+
+        const miJuego = new Tetris(() => new PiezaPalo());
+
+        // Gira una cantidad aleatoria de veces: la forma cambia, la cantidad no.
+        miJuego.rotarAleatoriamente();
+
+        expect(miJuego.piezaActual.getCeldas().length).toBe(4);
+    });
+
+
 
 
 
