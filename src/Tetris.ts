@@ -108,12 +108,21 @@ export class Tetris {
             ? this.piezaActual.actualizarCeldas(this.tablero.moverAbajo(celdas))
             : this.fijarPieza();
     }
+   /**
+     * Apoya la pieza donde quedó, borra las líneas completas y trae una nueva.
+     * Si la nueva no entra en el tablero, se terminó la partida.
+     */
+fijarPieza(): void{
+    // Corre una vez por cada pieza que deja de moverse.
+        this.piezasColocadas++;
+this.tablero.agregarPieza(this.piezaActual.getCeldas()); 
+     // eliminarLineasCompletas() devuelve cuántas líneas borró (filas + columnas).
+        this.lineasBorradas += this.tablero.eliminarLineasCompletas();
+        this.piezaActual=this.fabrica();
     
     
     
-    
-    
-    
+}
     
     // Gira la pieza una cantidad aleatoria de veces.
     /*
@@ -174,5 +183,5 @@ juegoGanado: boolean = false;
         // El juego se termina si NO hay posicion libre (perdimos) O si ya llegamos a las 40 líneas (ganamos).
         this.juegoTerminado = !posicionLibre || this.juegoGanado;
     }
-}
+
 */
