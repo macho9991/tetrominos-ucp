@@ -7,6 +7,21 @@ import { Reloj } from "./Reloj";
 // Importamos una pieza.
 import { PiezaPalo } from "./piezas/PiezaPalo";
 
+//importamos pieza base
+import { Piezabase } from "./piezas/PiezaBase";
+
+//importamos celdas
+import { Celdas } from "./Celdas";
+
+const COLUMNAS = 10;
+const FILAS = 20;
+const MS_POR_TURNO = 1000;
+const LINEAS_PARA_GANAR = 40;
+const ROTACIONES_POSIBLES = 4;
+
+/** Función que fabrica la pieza siguiente. */
+export type FabricaDePieza = () => Piezabase;
+
 export class Tetris {
 
     // Tablero donde se desarrolla el juego.
