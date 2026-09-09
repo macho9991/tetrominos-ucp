@@ -232,10 +232,6 @@ describe("Pruebas de Tetris", () => {
 
 
 
-
-
-
-
  /*
   // Comprueba que el juego terminado no avance.
   it("debería detener el turno si el juego ya terminó", () => {

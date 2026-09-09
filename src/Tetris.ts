@@ -140,9 +140,6 @@ this.tablero.agregarPieza(this.piezaActual.getCeldas());
 }
     
     
-    
-
-    
     // Gira la pieza una cantidad aleatoria de veces.
     /*
     rotarAleatoriamente(): void {
