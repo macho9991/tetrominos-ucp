@@ -188,7 +188,6 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.juegoTerminado).toBe(true);
         expect(miJuego.piezasColocadas).toBe(20);
 
-        console.log(`¡Ganaste! ${miJuego.lineasBorradas} líneas borradas con ${miJuego.piezasColocadas} piezas en ${miJuego.turnos} turnos`);
     });
         // --- Perder ---
 
@@ -210,7 +209,6 @@ describe("Pruebas de Tetris", () => {
         // Perdimos, no ganamos.
         expect(miJuego.juegoGanado).toBe(false);
 
-        console.log(`Game Over: las L taparon la entrada con ${miJuego.piezasColocadas} piezas en ${miJuego.turnos} turnos`);
     });
 
 
