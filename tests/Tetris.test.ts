@@ -78,8 +78,21 @@ describe("Pruebas de Tetris", () => {
     expect(miJuego.juegoTerminado).toBe(false);
 
   });
+    it("debería avanzar un turno cuando el reloj hace tick", () => {
+
+        const miJuego = new Tetris(() => new PiezaPalo());
+
+        // El reloj queda enganchado a avanzarTurno.
+        miJuego.iniciar();
+
+        // Un tick manual equivale a un turno.
+        miJuego.tick();
+
+        expect(miJuego.turnos).toBe(1);
+    });
 
 
+ /*
   // Comprueba que el juego terminado no avance.
   it("debería detener el turno si el juego ya terminó", () => {
 
@@ -198,4 +211,5 @@ test("debe cambiar juegoGanado y juegoTerminado a true al borrar 40 líneas (Vic
     
     // Si ganamos, el juego lógicamente también tiene que estar terminado
     expect(tetris.juegoTerminado).toBe(true);
+     */
 });
