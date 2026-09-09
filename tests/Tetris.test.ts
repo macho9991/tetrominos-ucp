@@ -90,6 +90,23 @@ describe("Pruebas de Tetris", () => {
 
         expect(miJuego.turnos).toBe(1);
     });
+     // --- Estructura del bloque ---
+
+    it("debería empezar con un palo de 4 celdas en la columna 0", () => {
+
+        const miJuego = new Tetris(() => new PiezaPalo());
+
+        const formaInicial = [
+            new Celdas(0, 0),
+            new Celdas(1, 0),
+            new Celdas(2, 0),
+            new Celdas(3, 0)
+        ];
+
+        expect(miJuego.piezaActual.getCeldas().length).toBe(4);
+        expect(miJuego.piezaActual.tieneForma(formaInicial)).toBe(true);
+    });
+
 
 
  /*
