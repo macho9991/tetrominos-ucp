@@ -139,6 +139,21 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.turnos).toBe(3);
         expect(miJuego.juegoTerminado).toBe(false);
     });
+     // --- Contador de líneas: fila ---
+
+    it("debería contar la línea cuando el cuadrado completa las filas del fondo", () => {
+
+        const miJuego = new Tetris(() => new PiezaCuadrado());
+
+        // Dejamos el fondo lleno salvo las columnas 0 y 1.
+        prepararBaseParaElCuadrado(miJuego);
+
+        // El cuadrado cae en ese hueco y completa las dos filas.
+        bajarHastaApoyar(miJuego);
+
+        expect(miJuego.lineasBorradas).toBe(2);
+        expect(miJuego.piezasColocadas).toBe(1);
+    });
 
 
 
