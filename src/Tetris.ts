@@ -119,10 +119,29 @@ this.tablero.agregarPieza(this.piezaActual.getCeldas());
      // eliminarLineasCompletas() devuelve cuántas líneas borró (filas + columnas).
         this.lineasBorradas += this.tablero.eliminarLineasCompletas();
         this.piezaActual=this.fabrica();
-    
-    
-    
+        // Ganamos al llegar a la meta de líneas.
+        this.juegoGanado = this.lineasBorradas >= LINEAS_PARA_GANAR;
+        // La pieza nueva entra sólo si todas sus celdas caen en lugares libres.
+        const posicionLibre = this.piezaActual.getCeldas().every((celda: Celdas) =>
+            this.tablero.esPosicionValida(celda.fila, celda.columna)
+        );
+        // Termina si la pieza no entra (perdimos) o si llegamos a la meta (ganamos).
+        this.juegoTerminado = !posicionLibre || this.juegoGanado;
+    }
+
+    /** Gira la pieza actual entre 0 y 3 veces. Todavía no se usa en la partida. */
+    rotarAleatoriamente(): void {
+        const giros = Math.floor(Math.random() * ROTACIONES_POSIBLES);
+
+        for (let i = 0; i < giros; i++) {
+            this.piezaActual.rotarDerecha();
+        }
+    }
 }
+    
+    
+    
+
     
     // Gira la pieza una cantidad aleatoria de veces.
     /*
