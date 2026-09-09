@@ -15,6 +15,23 @@ import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado";
 // Tope de seguridad: si la lógica falla, el test corta en vez de colgarse.
 const MAX_VUELTAS = 2000;
 
+/**
+ * Hace bajar la pieza actual hasta que se apoya.
+ * Nos damos cuenta porque el juego reemplaza piezaActual por una nueva.
+ */
+function bajarHastaApoyar(juego: Tetris): void {
+
+    const piezaQueEstabaCayendo = juego.piezaActual;
+    let vueltas = 0;
+
+    while (juego.piezaActual === piezaQueEstabaCayendo
+           && !juego.juegoTerminado
+           && vueltas < MAX_VUELTAS) {
+        juego.avanzarTurno();
+        vueltas++;
+    }
+}
+
 
 describe("Pruebas de Tetris", () => {
 
