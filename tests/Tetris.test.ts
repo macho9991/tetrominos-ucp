@@ -169,6 +169,29 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.lineasBorradas).toBe(1);
         expect(miJuego.piezasColocadas).toBe(1);
     });
+        // --- Ganar ---
+
+    it("debería ganar al llegar a las 40 líneas con cuadrados", () => {
+
+        const miJuego = new Tetris(() => new PiezaCuadrado());
+
+        // Cada cuadrado completa 2 filas, así que 20 cuadrados dan 40 líneas.
+        const CUADRADOS = 20;
+
+        for (let i = 0; i < CUADRADOS; i++) {
+            prepararBaseParaElCuadrado(miJuego);
+            bajarHastaApoyar(miJuego);
+        }
+
+        expect(miJuego.lineasBorradas).toBe(40);
+        expect(miJuego.juegoGanado).toBe(true);
+        expect(miJuego.juegoTerminado).toBe(true);
+        expect(miJuego.piezasColocadas).toBe(20);
+
+        console.log(`¡Ganaste! ${miJuego.lineasBorradas} líneas borradas con ${miJuego.piezasColocadas} piezas en ${miJuego.turnos} turnos`);
+    });
+
+
 
 
 
