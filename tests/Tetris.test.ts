@@ -32,6 +32,23 @@ function bajarHastaApoyar(juego: Tetris): void {
     }
 }
 
+/**
+ * Llena las dos filas del fondo dejando libres las columnas 0 y 1,
+ * que son las que va a completar el cuadrado cuando caiga.
+ */
+function prepararBaseParaElCuadrado(juego: Tetris): void {
+
+    const celdas: Celdas[] = [];
+
+    for (let fila = 18; fila <= 19; fila++) {
+        for (let columna = 2; columna <= 9; columna++) {
+            celdas.push(new Celdas(fila, columna));
+        }
+    }
+
+    juego.tablero.agregarPieza(celdas);
+}
+
 
 describe("Pruebas de Tetris", () => {
 
