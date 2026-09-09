@@ -355,5 +355,5 @@ test("debe cambiar juegoGanado y juegoTerminado a true al borrar 40 líneas (Vic
     
     // Si ganamos, el juego lógicamente también tiene que estar terminado
     expect(tetris.juegoTerminado).toBe(true);
-     */
-});
+     
+}); */
