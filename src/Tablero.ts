@@ -7,30 +7,41 @@ export class Tablero {
         public alto: number
     ) { }
 
+    //ENCAPSULAMIENTO: ATRIBUTO PRIVADE, solamente se puede acceder mediante metodo publico
     // Guarda todas las celdas que ya fueron colocadas en el tablero.
     private celdas: Celdas[] = [];
 
 
-    // Comprueba si una posición está dentro de los límites del tablero.
-    esPosicionValida(fila: number, columna: number): boolean {
+    // Comprueba si una celda del tablero está libre.
+    estaLibre(fila: number, columna: number): boolean {
 
-        return (
-            fila >= 0 &&
-            fila < this.alto &&
-            columna >= 0 &&
-            columna < this.ancho
+        return !this.celdas.some(
+            celda => celda.fila === fila && celda.columna === columna
         );
     }
 
 
-    // Agrega una pieza solamente si todas sus celdas están dentro del tablero.
+    // Una posición sirve si está dentro del tablero y además está libre.
+    esPosicionValida(fila: number, columna: number): boolean {
+
+        const dentroDelTablero =
+            fila >= 0 &&
+            fila < this.alto &&
+            columna >= 0 &&
+            columna < this.ancho;
+
+        return dentroDelTablero && this.estaLibre(fila, columna);
+    }
+
+
+    // Agrega una pieza solamente si todas sus celdas están libres y dentro del tablero.
     agregarPieza(celdas: Celdas[]): void {
 
         const posicionValida = celdas.every(celda =>
             this.esPosicionValida(celda.fila, celda.columna)
         );
 
-        this.celdas = posicionValida ? this.celdas.concat(celdas): this.celdas;
+        this.celdas = posicionValida ? this.celdas.concat(celdas) : this.celdas;
     }
 
 
@@ -62,38 +73,47 @@ export class Tablero {
     // Si no puede bajar, la deja colocada en el tablero.
     moverPieza(celdas: Celdas[]): Celdas[] {
 
-       const puedeBajar = this.puedeMoverAbajo(celdas);
-       !puedeBajar && this.agregarPieza(celdas);
-       return puedeBajar ? this.moverAbajo(celdas) : celdas;
+        const puedeBajar = this.puedeMoverAbajo(celdas);
+        !puedeBajar && this.agregarPieza(celdas);
+        return puedeBajar ? this.moverAbajo(celdas) : celdas;
     }
 
 
-    // Busca las líneas completas, las elimina
+    // Busca las líneas completas (filas y columnas), las elimina
     // y hace bajar las celdas que estaban arriba.
     eliminarLineasCompletas(): number {
 
         const filasCompletas: number[] = [];
+        const columnasCompletas: number[] = [];
 
-        // Recorremos todas las filas del tablero.
+        // Una fila está completa si tiene tantas celdas como el ancho del tablero.
         for (let fila = 0; fila < this.alto; fila++) {
 
-            // Contamos cuántas celdas hay en esta fila.
             const cantidad = this.celdas.filter(
                 celda => celda.fila === fila
             ).length;
 
-            // Si tiene tantas celdas como el ancho,
-            // significa que la línea está completa.
-         (cantidad === this.ancho) && filasCompletas.push(fila);
+            (cantidad === this.ancho) && filasCompletas.push(fila);
         }
 
-        // Eliminamos las celdas que pertenecen a las líneas completas.
-        this.celdas = this.celdas.filter(
-            celda => !filasCompletas.includes(celda.fila)
+        // Una columna está completa si tiene tantas celdas como el alto del tablero.
+        for (let columna = 0; columna < this.ancho; columna++) {
+
+            const cantidad = this.celdas.filter(
+                celda => celda.columna === columna
+            ).length;
+
+            (cantidad === this.alto) && columnasCompletas.push(columna);
+        }
+
+        // Eliminamos las celdas que pertenecen a una fila o a una columna completa.
+        this.celdas = this.celdas.filter(celda =>
+            !filasCompletas.includes(celda.fila) &&
+            !columnasCompletas.includes(celda.columna)
         );
 
         // Hacemos bajar las celdas que estaban por encima
-        // de alguna línea eliminada.
+        // de alguna fila eliminada. Las columnas no desplazan nada.
         this.celdas = this.celdas.map(celda => {
 
             const cantidadLineasDebajo = filasCompletas.filter(
@@ -106,13 +126,14 @@ export class Tablero {
             );
         });
 
-        // Devuelve cuántas líneas se eliminaron.
-        return filasCompletas.length;
+        // Devuelve cuántas líneas se eliminaron, sumando filas y columnas.
+        return filasCompletas.length + columnasCompletas.length;
     }
 
-
+    //Solo se accede como metodo publico
     // Devuelve todas las celdas actuales del tablero.
     getCeldas(): Celdas[] {
         return this.celdas;
     }
+
 }
