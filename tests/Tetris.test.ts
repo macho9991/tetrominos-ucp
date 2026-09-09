@@ -190,6 +190,45 @@ describe("Pruebas de Tetris", () => {
 
         console.log(`¡Ganaste! ${miJuego.lineasBorradas} líneas borradas con ${miJuego.piezasColocadas} piezas en ${miJuego.turnos} turnos`);
     });
+        // --- Perder ---
+
+    it("debería perder cuando las L se apilan hasta el tope", () => {
+
+        const miJuego = new Tetris(() => new PiezaL());
+
+        let vueltas = 0;
+
+        // Las L caen siempre en las mismas columnas: dejan huecos,
+        // nunca completan una fila y terminan tapando la entrada.
+        while (!miJuego.juegoTerminado && vueltas < MAX_VUELTAS) {
+            miJuego.avanzarTurno();
+            vueltas++;
+        }
+
+        expect(miJuego.juegoTerminado).toBe(true);
+
+        // Perdimos, no ganamos.
+        expect(miJuego.juegoGanado).toBe(false);
+
+        console.log(`Game Over: las L taparon la entrada con ${miJuego.piezasColocadas} piezas en ${miJuego.turnos} turnos`);
+    });
+
+
+    it("no debería avanzar turnos si el juego ya terminó", () => {
+
+        const miJuego = new Tetris();
+
+        miJuego.juegoTerminado = true;
+
+        const turnosAntes = miJuego.turnos;
+
+        miJuego.avanzarTurno();
+
+        expect(miJuego.turnos).toBe(turnosAntes);
+        expect(miJuego.juegoTerminado).toBe(true);
+    });
+
+});
 
 
 
