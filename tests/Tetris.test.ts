@@ -5,6 +5,15 @@ import { Tetris } from "../src/Tetris";
 
 // Importamos Celdas para comprobar las posiciones.
 import { Celdas } from "../src/Celdas";
+// 
+import { PiezaPalo } from "../src/piezas/PiezaPalo";
+// 
+import { PiezaL } from "../src/piezas/PiezaL";
+// 
+import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado";
+
+// Tope de seguridad: si la lógica falla, el test corta en vez de colgarse.
+const MAX_VUELTAS = 2000;
 
 
 describe("Pruebas de Tetris", () => {
