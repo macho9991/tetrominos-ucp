@@ -8,6 +8,8 @@ export class Tablero {
     ) { }
 
     // Guarda todas las celdas que ya fueron colocadas en el tablero.
+    // [ENCAPSULAMIENTO] private: nadie fuera de la clase lo lee ni lo modifica.
+    // Solo se accede por los métodos públicos (getCeldas, agregarPieza, etc.).
     private celdas: Celdas[] = [];
 
 
@@ -128,21 +130,12 @@ export class Tablero {
         // Devuelve cuántas líneas se eliminaron, sumando filas y columnas.
         return filasCompletas.length + columnasCompletas.length;
     }
-    
-    /*
-    //modificado
-    // Devuelve una copia de las celdas del tablero.
-    // Copiamos para que nadie pueda modificar el estado interno desde afuera.
-    getCeldas(): Celdas[] {
-        return [...this.celdas];
-    }
-    */
 
 
     // Devuelve una copia de las celdas del tablero.
     // Copiamos para que nadie pueda modificar el estado interno desde afuera.
     getCeldas(): Celdas[] {
-        return this.celdas;
+        return this.celdas; //return [...this.celdas];
     }
     
 }

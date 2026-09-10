@@ -1,8 +1,15 @@
 import { Celdas } from "../Celdas";
 
+/**
+  [ABSTRACCIÓN] Concepto general de "pieza de Tetris": celdas, rotación, alto y ancho,
+  sin decidir la forma concreta. Al ser abstract no se instancia: es la raíz de la
+  [HERENCIA] de PiezaPalo, PiezaT, PiezaL, PiezaCuadrado y PiezaPerro.
+ */
 export abstract class Piezabase {
 
     // Nombre de la pieza.
+    // [ENCAPSULAMIENTO] protected: el código externo solo accede vía getNombre/getCeldas.
+    // Las subclases podrían tocarlo, pero ninguna lo hace: todas pasan por super().
     protected nombre: string;
 
     // Celdas que forman la pieza.

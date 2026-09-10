@@ -19,7 +19,11 @@ const MS_POR_TURNO = 1000;
 const LINEAS_PARA_GANAR = 40;
 const ROTACIONES_POSIBLES = 4;
 
-/** Función que fabrica la pieza siguiente. */
+/**
+ * [ABSTRACCIÓN] Abstrae "cómo se consigue la próxima pieza": Tetris no sabe
+ * ni le importa qué pieza concreta se crea, solo conoce esta función que
+ * le devuelve algo compatible con Piezabase.
+ */
 export type FabricaDePieza = () => Piezabase;
 
 export class Tetris {
@@ -31,7 +35,11 @@ export class Tetris {
     reloj: Reloj;
 
     // Pieza que actualmente está cayendo. Puede ser cualquiera de las cinco.
-    piezaActual: PiezaPalo;
+    // [ABSTRACCIÓN + POLIMORFISMO] Se declara con el tipo abstracto Piezabase,
+    // no con una pieza concreta: en tiempo de ejecución puede ser un PiezaPalo,
+    // PiezaT, PiezaL, PiezaCuadrado o PiezaPerro, y el resto de esta clase
+    // (jugarTurno, fijarPieza, rotarAleatoriamente) no necesita distinguir cuál es.
+    piezaActual: Piezabase;
 
     // Indica si el juego terminó.
     juegoTerminado: boolean;
@@ -48,7 +56,11 @@ export class Tetris {
     // Cuenta las piezas que quedaron fijas en el tablero.
     piezasColocadas: number;
 
-    /** De dónde salen las piezas. Los tests le pasan la que necesitan. */
+    /**
+     * De dónde salen las piezas. Los tests le pasan la que necesitan.
+     * [ENCAPSULAMIENTO] Es privada: el resto del juego no sabe cómo
+     * se fabrica la próxima pieza, solo que this.fabrica() le da una.
+     */
     private fabrica: FabricaDePieza;
 
 
@@ -128,7 +140,11 @@ this.tablero.agregarPieza(this.piezaActual.getCeldas());
         this.juegoTerminado = !posicionLibre || this.juegoGanado;
     }
 
-    /** Gira la pieza actual entre 0 y 3 veces. Todavía no se usa en la partida. */
+    /**
+       Gira la pieza actual entre 0 y 3 veces. Todavía no se usa en la partida.
+       [POLIMORFISMO] No importa qué pieza concreta sea piezaActual: cada una
+       ejecuta su propia rotarDerecha() heredada de Piezabase.
+     */
     rotarAleatoriamente(): void {
         const giros = Math.floor(Math.random() * ROTACIONES_POSIBLES);
 
