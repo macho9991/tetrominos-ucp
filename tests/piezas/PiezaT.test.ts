@@ -12,6 +12,11 @@ test("debe tener la forma inicial de T", () => {
     // Creamos la pieza.
     const pieza = new PiezaT();
 
+    // Forma esperada:
+    //
+    // .X.
+    // XXX
+    //
     const formaEsperada = [
         new Celdas(0, 1),
         new Celdas(1, 0),
@@ -32,6 +37,12 @@ test("debe rotar 90 grados a la derecha", () => {
     // Giramos a la derecha.
     pieza.rotarDerecha();
 
+    // La T queda apuntando a la derecha:
+    //
+    // X.
+    // XX
+    // X.
+    //
     const formaEsperada = [
         new Celdas(0, 0),
         new Celdas(1, 0),
@@ -52,6 +63,12 @@ test("debe rotar 90 grados a la izquierda", () => {
     // Giramos a la izquierda.
     pieza.rotarIzquierda();
 
+    // La T queda apuntando a la izquierda:
+    //
+    // .X
+    // XX
+    // .X
+    //
     const formaEsperada = [
         new Celdas(0, 1),
         new Celdas(1, 0),

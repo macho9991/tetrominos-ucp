@@ -1,6 +1,6 @@
 import { test, expect } from "vitest";
 
-// Importamos la pieza Perro.
+// Importamos la pieza Perro (la S del Tetris clásico).
 import { PiezaPerro } from "../../src/piezas/PiezaPerro";
 
 // Importamos Celdas para definir las posiciones esperadas.
