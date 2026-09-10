@@ -39,3 +39,26 @@ test("debe ejecutar la acción cuando hace tick", () => {
     expect(contador).toBe(1);
 
 });
+
+//agregado......
+// TEST 3: Frenar el reloj
+
+test("debe poder detenerse", () => {
+
+    const reloj = new Reloj(1000);
+
+    let contador = 0;
+
+    reloj.iniciar(() => {
+        contador++;
+    });
+
+    reloj.detener();
+
+    // Después de detenerlo, un tick manual sigue funcionando:
+    // detener() frena el intervalo, no la acción guardada.
+    reloj.tick();
+
+    expect(contador).toBe(1);
+
+});

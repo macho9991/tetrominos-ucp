@@ -33,7 +33,8 @@ export abstract class Piezabase {
             });
         });
 
-        // Buscamos la fila y columna más pequeñas.
+        // Normalizamos: la pieza queda pegada al origen (0,0) sin importar
+        // dónde estaba dibujada en la matriz. Así todas arrancan igual.
         const minFila = Math.min(...celdas.map(c => c.fila));
         const minColumna = Math.min(...celdas.map(c => c.columna));
 
@@ -73,7 +74,7 @@ export abstract class Piezabase {
         return Math.max(...this.celdas.map(c => c.columna)) + 1;
     }
 
-    // Comprueba si la pieza tiene una forma determinada.
+    // Compara la pieza con una forma esperada, sin importar el orden de las celdas.
     tieneForma(esperadas: Celdas[]): boolean {
 
         const mismoTamano = this.celdas.length === esperadas.length;
@@ -87,6 +88,8 @@ export abstract class Piezabase {
         return mismoTamano && todasCoinciden;
     }
 
+    // Gira 90° a la derecha: la columna pasa a ser la fila,
+    // y la fila se invierte contra el alto para que no queden posiciones negativas.
     // Gira la pieza hacia la derecha.
     rotarDerecha(): void {
 

@@ -5,15 +5,23 @@ import { Tetris } from "../src/Tetris";
 
 // Importamos Celdas para comprobar las posiciones.
 import { Celdas } from "../src/Celdas";
-// 
+
+// El palo cae siempre en la columna 0: sirve para los tests de movimiento y de columna.
 import { PiezaPalo } from "../src/piezas/PiezaPalo";
-// 
+
+// La L deja huecos al apilarse: la usamos para forzar el Game Over.
 import { PiezaL } from "../src/piezas/PiezaL";
-// 
+
+// El cuadrado completa dos filas de una: la usamos para contar líneas y ganar.
 import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado";
 
-// Tope de seguridad: si la lógica falla, el test corta en vez de colgarse.
+/**
+ * Tope de seguridad: corta el bucle si la lógica falla. Nunca debería alcanzarse.
+ * Mínimo razonable 500 (la partida más larga medida usó 380 turnos); sin máximo,
+ * un número alto no cuesta nada porque el bucle corta apenas el juego termina.
+ */
 const MAX_VUELTAS = 2000;
+
 
 /**
  * Hace bajar la pieza actual hasta que se apoya.
@@ -31,6 +39,7 @@ function bajarHastaApoyar(juego: Tetris): void {
         vueltas++;
     }
 }
+
 
 /**
  * Llena las dos filas del fondo dejando libres las columnas 0 y 1,
@@ -90,8 +99,8 @@ describe("Pruebas de Tetris", () => {
 
         expect(miJuego.turnos).toBe(1);
     });
-     // --- Estructura del bloque ---
 
+     // --- Estructura del bloque ---
     it("debería empezar con un palo de 4 celdas en la columna 0", () => {
 
         const miJuego = new Tetris(() => new PiezaPalo());
@@ -106,8 +115,8 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.piezaActual.getCeldas().length).toBe(4);
         expect(miJuego.piezaActual.tieneForma(formaInicial)).toBe(true);
     });
-      // --- Rotación ---
 
+    // --- Rotación ---
     it("debería mantener las 4 celdas después de rotar al azar", () => {
 
         const miJuego = new Tetris(() => new PiezaPalo());
@@ -117,8 +126,8 @@ describe("Pruebas de Tetris", () => {
 
         expect(miJuego.piezaActual.getCeldas().length).toBe(4);
     });
-     // --- Jugar ---
 
+    // --- Jugar ---
     it("debería bajar la pieza una fila por turno", () => {
 
         const miJuego = new Tetris(() => new PiezaPalo());
@@ -139,8 +148,8 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.turnos).toBe(3);
         expect(miJuego.juegoTerminado).toBe(false);
     });
-     // --- Contador de líneas: fila ---
 
+    // --- Contador de líneas: fila ---
     it("debería contar la línea cuando el cuadrado completa las filas del fondo", () => {
 
         const miJuego = new Tetris(() => new PiezaCuadrado());
@@ -154,8 +163,8 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.lineasBorradas).toBe(2);
         expect(miJuego.piezasColocadas).toBe(1);
     });
-        // --- Contador de líneas: columna ---
 
+    // --- Contador de líneas: columna ---
     it("debería contar la línea cuando el palo completa la columna", () => {
 
         const miJuego = new Tetris(() => new PiezaPalo());
@@ -169,8 +178,8 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.lineasBorradas).toBe(1);
         expect(miJuego.piezasColocadas).toBe(1);
     });
-        // --- Ganar ---
 
+    // --- Ganar ---
     it("debería ganar al llegar a las 40 líneas con cuadrados", () => {
 
         const miJuego = new Tetris(() => new PiezaCuadrado());
@@ -189,8 +198,8 @@ describe("Pruebas de Tetris", () => {
         expect(miJuego.piezasColocadas).toBe(20);
 
     });
-        // --- Perder ---
 
+    // --- Perder ---
     it("debería perder cuando las L se apilan hasta el tope", () => {
 
         const miJuego = new Tetris(() => new PiezaL());
@@ -211,7 +220,7 @@ describe("Pruebas de Tetris", () => {
 
     });
 
-
+    // --- Extra: el juego no sigue después de terminar ---
     it("no debería avanzar turnos si el juego ya terminó", () => {
 
         const miJuego = new Tetris();
@@ -229,7 +238,7 @@ describe("Pruebas de Tetris", () => {
 });
 
 
-
+ //despues ver si sacar esto
  /*
   // Comprueba que el juego terminado no avance.
   it("debería detener el turno si el juego ya terminó", () => {

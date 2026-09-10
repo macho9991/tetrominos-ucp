@@ -7,7 +7,6 @@ export class Tablero {
         public alto: number
     ) { }
 
-    //ENCAPSULAMIENTO: ATRIBUTO PRIVADE, solamente se puede acceder mediante metodo publico
     // Guarda todas las celdas que ya fueron colocadas en el tablero.
     private celdas: Celdas[] = [];
 
@@ -129,11 +128,20 @@ export class Tablero {
         // Devuelve cuántas líneas se eliminaron, sumando filas y columnas.
         return filasCompletas.length + columnasCompletas.length;
     }
+    //modificado
+    // Devuelve una copia de las celdas del tablero.
+    // Copiamos para que nadie pueda modificar el estado interno desde afuera.
+    getCeldas(): Celdas[] {
+        return [...this.celdas];
+    }
 
-    //Solo se accede como metodo publico
-    // Devuelve todas las celdas actuales del tablero.
+
+
+    /*
+    // Devuelve una copia de las celdas del tablero.
+    // Copiamos para que nadie pueda modificar el estado interno desde afuera.
     getCeldas(): Celdas[] {
         return this.celdas;
     }
-
+    */
 }

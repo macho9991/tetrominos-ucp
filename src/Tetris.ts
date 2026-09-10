@@ -30,22 +30,22 @@ export class Tetris {
     // Reloj que controla los turnos.
     reloj: Reloj;
 
-    // Pieza que actualmente está cayendo.
+    // Pieza que actualmente está cayendo. Puede ser cualquiera de las cinco.
     piezaActual: PiezaPalo;
 
     // Indica si el juego terminó.
     juegoTerminado: boolean;
 
-    //
+    // Indica si la partida se ganó llegando a la meta de líneas.
     juegoGanado: boolean;
 
-    //
+    // Acumula las líneas eliminadas en toda la partida.
     lineasBorradas: number;
 
     // Cuenta los turnos realizados.
     turnos: number;
 
-    //
+    // Cuenta las piezas que quedaron fijas en el tablero.
     piezasColocadas: number;
 
     /** De dónde salen las piezas. Los tests le pasan la que necesitan. */
@@ -54,24 +54,23 @@ export class Tetris {
 
    constructor(fabrica: FabricaDePieza = () => new PiezaPalo()) {
 
-        //
+        // Armamos el juego: tablero, reloj, primera pieza y contadores en cero.
         this.fabrica = fabrica;
 
-        //
         this.tablero = new Tablero(COLUMNAS, FILAS);
-        //
+
         this.reloj = new Reloj(MS_POR_TURNO);
-        //
+        
         this.piezaActual = this.fabrica();
-        //
+        
         this.juegoTerminado = false;
-        //
+        
         this.juegoGanado = false;
-        //
+        
         this.lineasBorradas = 0;
-        //
+        
         this.turnos = 0;
-        //
+        
         this.piezasColocadas = 0;
 
     }
@@ -139,7 +138,9 @@ this.tablero.agregarPieza(this.piezaActual.getCeldas());
     }
 }
     
-    
+
+
+    //despues borrar esto    
     // Gira la pieza una cantidad aleatoria de veces.
     /*
     rotarAleatoriamente(): void {

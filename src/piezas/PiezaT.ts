@@ -1,5 +1,6 @@
 import { Piezabase } from "./PiezaBase";
 
+// Pieza en forma de T: una fila de tres celdas con una saliente en el medio.
 export class PiezaT extends Piezabase {
 
     constructor() {
