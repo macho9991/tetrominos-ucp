@@ -42,7 +42,6 @@ test("debe ejecutar la acción cuando hace tick", () => {
 
 //agregado......
 // TEST 3: Frenar el reloj
-
 test("debe poder detenerse", () => {
 
     const reloj = new Reloj(1000);
@@ -60,5 +59,6 @@ test("debe poder detenerse", () => {
     reloj.tick();
 
     expect(contador).toBe(1);
+    
 
 });

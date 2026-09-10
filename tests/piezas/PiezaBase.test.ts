@@ -53,19 +53,7 @@ describe("PiezaBase", () => {
 
             expect(pieza.tieneForma(esperadas)).toBe(false);
         });
-        /* agregado.......
-             it("debería devolver false si tienen distinta forma o tamaño", () => {
 
-            const pieza = new PiezaPrueba([new Celdas(0, 0)]);
-
-            // Tratamos de compararlo con una pieza de 2 bloques.
-            // Verifica el chequeo de tamaño: aunque la celda (0,0) coincide,
-            // la cantidad no, así que tiene que dar false.
-            const esperadas = [new Celdas(0, 0), new Celdas(0, 1)];
-
-            expect(pieza.tieneForma(esperadas)).toBe(false);
-        });
-        */
     });
 
 });

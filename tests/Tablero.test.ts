@@ -287,25 +287,3 @@ test("debe hacer bajar las celdas después de eliminar una línea", () => {
   expect(tablero.getCeldas()).toEqual(formaEsperada);
 
 });
-
-/*
-// TEST 12: Eliminar una columna completa
-
-test("debe eliminar una columna completa", () => {
-
-  // Creamos el tablero.
-  const tablero = new Tablero(10, 20);
-
-  // Llenamos la columna 0 con las 20 filas.
-  const columna = [];
-
-  for (let fila = 0; fila < 20; fila++) {
-    columna.push(new Celdas(fila, 0));
-  }
-
-  tablero.agregarPieza(columna);
-
-  // Comprobamos que se haya eliminado una línea.
-  expect(tablero.eliminarLineasCompletas()).toBe(1);
-
-});*/

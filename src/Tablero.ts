@@ -128,20 +128,21 @@ export class Tablero {
         // Devuelve cuántas líneas se eliminaron, sumando filas y columnas.
         return filasCompletas.length + columnasCompletas.length;
     }
+    
+    /*
     //modificado
     // Devuelve una copia de las celdas del tablero.
     // Copiamos para que nadie pueda modificar el estado interno desde afuera.
     getCeldas(): Celdas[] {
         return [...this.celdas];
     }
+    */
 
 
-
-    /*
     // Devuelve una copia de las celdas del tablero.
     // Copiamos para que nadie pueda modificar el estado interno desde afuera.
     getCeldas(): Celdas[] {
         return this.celdas;
     }
-    */
+    
 }
