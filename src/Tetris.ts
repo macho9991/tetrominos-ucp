@@ -20,9 +20,9 @@ const LINEAS_PARA_GANAR = 40;
 const ROTACIONES_POSIBLES = 4;
 
 /**
- * [ABSTRACCIÓN] Abstrae "cómo se consigue la próxima pieza": Tetris no sabe
- * ni le importa qué pieza concreta se crea, solo conoce esta función que
- * le devuelve algo compatible con Piezabase.
+ [ABSTRACCIÓN] Abstrae "cómo se consigue la próxima pieza": Tetris no sabe
+ ni le importa qué pieza concreta se crea, solo conoce esta función que
+ le devuelve algo compatible con Piezabase.
  */
 export type FabricaDePieza = () => Piezabase;
 
@@ -57,9 +57,9 @@ export class Tetris {
     piezasColocadas: number;
 
     /**
-     * De dónde salen las piezas. Los tests le pasan la que necesitan.
-     * [ENCAPSULAMIENTO] Es privada: el resto del juego no sabe cómo
-     * se fabrica la próxima pieza, solo que this.fabrica() le da una.
+     De dónde salen las piezas. Los tests le pasan la que necesitan.
+     [ENCAPSULAMIENTO] Es privada: el resto del juego no sabe cómo
+     se fabrica la próxima pieza, solo que this.fabrica() le da una.
      */
     private fabrica: FabricaDePieza;
 
@@ -96,8 +96,8 @@ export class Tetris {
     }
 
     /**
-     * Compuerta del juego: el turno se juega sólo si la partida sigue activa.
-     * Si ya terminó, la llamada no hace nada.
+     Compuerta del juego: el turno se juega sólo si la partida sigue activa.
+     Si ya terminó, la llamada no hace nada.
      */
 
     avanzarTurno(): void {
@@ -105,8 +105,8 @@ export class Tetris {
     }
 
     /**
-     * Un turno real: la pieza baja una fila.
-     * Si ya no puede bajar, queda fija y aparece la siguiente.
+     Un turno real: la pieza baja una fila.
+     Si ya no puede bajar, queda fija y aparece la siguiente.
      */
     private jugarTurno(): void {
 
@@ -120,24 +120,30 @@ export class Tetris {
             : this.fijarPieza();
     }
    /**
-     * Apoya la pieza donde quedó, borra las líneas completas y trae una nueva.
-     * Si la nueva no entra en el tablero, se terminó la partida.
+     Apoya la pieza donde quedó, borra las líneas completas y trae una nueva.
+     Si la nueva no entra en el tablero, se terminó la partida.
      */
 fijarPieza(): void{
     // Corre una vez por cada pieza que deja de moverse.
-        this.piezasColocadas++;
-this.tablero.agregarPieza(this.piezaActual.getCeldas()); 
-     // eliminarLineasCompletas() devuelve cuántas líneas borró (filas + columnas).
-        this.lineasBorradas += this.tablero.eliminarLineasCompletas();
-        this.piezaActual=this.fabrica();
-        // Ganamos al llegar a la meta de líneas.
-        this.juegoGanado = this.lineasBorradas >= LINEAS_PARA_GANAR;
-        // La pieza nueva entra sólo si todas sus celdas caen en lugares libres.
-        const posicionLibre = this.piezaActual.getCeldas().every((celda: Celdas) =>
-            this.tablero.esPosicionValida(celda.fila, celda.columna)
-        );
-        // Termina si la pieza no entra (perdimos) o si llegamos a la meta (ganamos).
-        this.juegoTerminado = !posicionLibre || this.juegoGanado;
+    this.piezasColocadas++;
+    
+    this.tablero.agregarPieza(this.piezaActual.getCeldas()); 
+
+    // eliminarLineasCompletas() devuelve cuántas líneas borró (filas + columnas).
+    this.lineasBorradas += this.tablero.eliminarLineasCompletas();
+
+    this.piezaActual=this.fabrica();
+        
+    // Ganamos al llegar a la meta de líneas.
+    this.juegoGanado = this.lineasBorradas >= LINEAS_PARA_GANAR;
+
+    // La pieza nueva entra sólo si todas sus celdas caen en lugares libres.
+    const posicionLibre = this.piezaActual.getCeldas().every((celda: Celdas) =>
+    this.tablero.esPosicionValida(celda.fila, celda.columna)
+    );
+    
+    // Termina si la pieza no entra (perdimos) o si llegamos a la meta (ganamos).
+    this.juegoTerminado = !posicionLibre || this.juegoGanado;
     }
 
     /**

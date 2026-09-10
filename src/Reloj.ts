@@ -30,7 +30,7 @@ export class Reloj {
         setInterval(accion, this.tiempoDeEspera);
     }
     //agregado......
-        // Frena el reloj. Sin esto, el intervalo sigue corriendo para siempre.
+    // Frena el reloj. Sin esto, el intervalo sigue corriendo para siempre.
     detener(): void {
 
         this.intervalo !== null && clearInterval(this.intervalo);
