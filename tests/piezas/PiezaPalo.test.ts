@@ -12,6 +12,13 @@ test("debe tener la forma inicial de palo", () => {
     // Creamos el palo.
     const pieza = new PiezaPalo();
 
+    // Forma inicial: vertical, 4 de alto.
+    //
+    // X
+    // X
+    // X
+    // X
+    //
     const formaEsperada = [
         new Celdas(0, 0),
         new Celdas(1, 0),
@@ -31,7 +38,10 @@ test("debe rotar 90 grados a la derecha", () => {
 
     // Giramos a la derecha.
     pieza.rotarDerecha();
-
+    // Queda acostado, 4 de ancho.
+    //
+    // XXXX
+    //
     const formaEsperada = [
         new Celdas(0, 0),
         new Celdas(0, 1),
@@ -52,6 +62,11 @@ test("debe rotar 90 grados a la izquierda", () => {
     // Giramos a la izquierda.
     pieza.rotarIzquierda();
 
+    // Queda igual que girando a la derecha: el palo sólo tiene
+    // dos orientaciones, vertical y horizontal.
+    //
+    // XXXX
+    //
     const formaEsperada = [
         new Celdas(0, 0),
         new Celdas(0, 1),

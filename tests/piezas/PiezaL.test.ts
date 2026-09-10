@@ -76,11 +76,10 @@ test("debe rotar 90 grados a la izquierda", () => {
     // Giramos la pieza a la izquierda.
     pieza.rotarIzquierda();
 
-    // Forma después del giro:
+    // Forma después del giro: es la de la derecha dada vuelta.
     //
-    //   X
-    //   X
-    //   X X
+    // . . X
+    // X X X
     //
     const formaEsperada = [
         new Celdas(0, 2),
