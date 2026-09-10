@@ -136,10 +136,10 @@ export class Tablero {
     // el tablero no se entera. Así todo cambio pasa sí o sí por agregarPieza,
     // que valida antes de guardar.
     getCeldas(): Celdas[] {
-        return [...this.celdas]; //return this.celdas
-        // Los tres puntos copian el array: sin ellos saldría el interno.
-        // Los corchetes arman un array nuevo con las mismas celdas.
-
+        // Los corchetes con spread arman un array nuevo con las mismas celdas.
+        // Así nadie puede alterar el tablero desde afuera sin pasar por agregarPieza.
+        return [...this.celdas]; 
+        //return this.celdas. como estaba escrito anteriormente..
     }
     
 }
