@@ -57,9 +57,11 @@ describe("PiezaCuadrado", () => {
             new Celdas(1, 1)
         ];
 
+        // Giramos a la derecha: el cuadrado no cambia.
         pieza.rotarDerecha();
         expect(pieza.tieneForma(formaEsperada)).toBe(true);
 
+        // Y a la izquierda tampoco: son dos métodos distintos, hay que probar los dos.
         pieza.rotarIzquierda();
         expect(pieza.tieneForma(formaEsperada)).toBe(true);
 

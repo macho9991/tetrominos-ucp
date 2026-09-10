@@ -132,10 +132,14 @@ export class Tablero {
     }
 
 
-    // Devuelve una copia de las celdas del tablero.
-    // Copiamos para que nadie pueda modificar el estado interno desde afuera.
+    // [ENCAPSULAMIENTO] Devuelve una copia: si alguien modifica el array que recibe,
+    // el tablero no se entera. Así todo cambio pasa sí o sí por agregarPieza,
+    // que valida antes de guardar.
     getCeldas(): Celdas[] {
-        return this.celdas; //return [...this.celdas];
+        return [...this.celdas]; //return this.celdas
+        // Los tres puntos copian el array: sin ellos saldría el interno.
+        // Los corchetes arman un array nuevo con las mismas celdas.
+
     }
     
 }
