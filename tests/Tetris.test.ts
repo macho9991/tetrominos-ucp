@@ -16,16 +16,16 @@ import { PiezaL } from "../src/piezas/PiezaL";
 import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado";
 
 /**
- * Tope de seguridad: corta el bucle si la lógica falla. Nunca debería alcanzarse.
- * Mínimo razonable 500 (la partida más larga medida usó 380 turnos); sin máximo,
- * un número alto no cuesta nada porque el bucle corta apenas el juego termina.
+ Tope de seguridad: corta el bucle si la lógica falla. Nunca debería alcanzarse.
+ Mínimo razonable 500 (la partida más larga medida usó 380 turnos); sin máximo,
+ un número alto no cuesta nada porque el bucle corta apenas el juego termina.
  */
 const MAX_VUELTAS = 2000;
 
 
 /**
- * Hace bajar la pieza actual hasta que se apoya.
- * Nos damos cuenta porque el juego reemplaza piezaActual por una nueva.
+ Hace bajar la pieza actual hasta que se apoya.
+ Nos damos cuenta porque el juego reemplaza piezaActual por una nueva.
  */
 function bajarHastaApoyar(juego: Tetris): void {
 
@@ -42,8 +42,8 @@ function bajarHastaApoyar(juego: Tetris): void {
 
 
 /**
- * Llena las dos filas del fondo dejando libres las columnas 0 y 1,
- * que son las que va a completar el cuadrado cuando caiga.
+ Llena las dos filas del fondo dejando libres las columnas 0 y 1,
+ que son las que va a completar el cuadrado cuando caiga.
  */
 function prepararBaseParaElCuadrado(juego: Tetris): void {
 
@@ -59,8 +59,8 @@ function prepararBaseParaElCuadrado(juego: Tetris): void {
 }
 
 /**
- * Llena la columna 0 desde la fila 4 hasta el fondo.
- * Le quedan libres las cuatro de arriba, que son las que ocupa el palo.
+ Llena la columna 0 desde la fila 4 hasta el fondo.
+ Le quedan libres las cuatro de arriba, que son las que ocupa el palo.
  */
 function prepararColumnaParaElPalo(juego: Tetris): void {
 
