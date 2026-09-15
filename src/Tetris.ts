@@ -15,9 +15,9 @@ import { Celdas } from "./Celdas";
 
 const COLUMNAS = 10;
 const FILAS = 20;
-const MS_POR_TURNO = 1000;
-const LINEAS_PARA_GANAR = 40;
-const ROTACIONES_POSIBLES = 4;
+const MS_POR_TURNO = 1000; //significa que cada turno automático ocurre cada 1000 milisegundos = 1 segundo.
+const LINEAS_PARA_GANAR = 40;//establece que el jugador gana cuando llega a 40 líneas borradas
+const ROTACIONES_POSIBLES = 4;//representa las 4 orientaciones posibles de una pieza: 0°, 90°, 180° y 270°
 
 /**
  [ABSTRACCIÓN] Abstrae "cómo se consigue la próxima pieza": Tetris no sabe
@@ -159,4 +159,47 @@ fijarPieza(): void{
         }
     }
 }
-    
+
+/*Math.random() genera un número aleatorio, 
+lo multiplicamos por 4 para obtener las cuatro 
+posibilidades de rotación y Math.floor() 
+elimina los decimales para quedarnos con 0, 1, 2 o 3
+*/
+//for gira la pieza esa cantidad de veces
+
+    /*
+     * Math.random() genera un número aleatorio entre 0 y casi 1.
+     *
+     * Por ejemplo:
+     * Math.random() podría devolver:
+     *
+     * 0.12
+     * 0.48
+     * 0.73
+     * 0.99
+     *
+     * Como ROTACIONES_POSIBLES vale 4, multiplicamos por 4:
+     *
+     * 0.12 * 4 = 0.48
+     * 0.48 * 4 = 1.92
+     * 0.73 * 4 = 2.92
+     * 0.99 * 4 = 3.96
+     *
+     * Math.floor() redondea hacia abajo:
+     *
+     * 0.48 -> 0
+     * 1.92 -> 1
+     * 2.92 -> 2
+     * 3.96 -> 3
+     *
+     * Por lo tanto, giros solamente puede valer 0, 1, 2 o 3.
+     */
+
+    /*
+     * Repetimos la rotación según la cantidad de giros obtenida.
+     *
+     * giros = 0 -> no gira
+     * giros = 1 -> gira 1 vez
+     * giros = 2 -> gira 2 veces
+     * giros = 3 -> gira 3 veces
+     */

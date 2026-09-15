@@ -33,7 +33,7 @@ function bajarHastaApoyar(juego: Tetris): void {
     let vueltas = 0;
 
     while (juego.piezaActual === piezaQueEstabaCayendo
-           && !juego.juegoTerminado
+           && !juego.juegoTerminado // && AND lógico
            && vueltas < MAX_VUELTAS) {
         juego.avanzarTurno();
         vueltas++;
@@ -49,7 +49,7 @@ function prepararBaseParaElCuadrado(juego: Tetris): void {
 
     const celdas: Celdas[] = [];
 
-    for (let fila = 18; fila <= 19; fila++) {
+    for (let fila = 18; fila <= 19; fila++) {//recorrigo por filas y columnas
         for (let columna = 2; columna <= 9; columna++) {
             celdas.push(new Celdas(fila, columna));
         }
